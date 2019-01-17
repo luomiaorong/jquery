@@ -99,66 +99,84 @@
     </table>
     <script src="./js/jquery-3.3.1.js"></script>
     <script>
-    function addShopping(btn){
-        var tds=$(btn).parent().siblings();//获取当前元素的父节点的全部兄弟节点，就是当前这行的所有td
-        var name=$(tds).eq(0).text();//获取商品名称的td的文本值
-        var price=$(tds).eq(1).text();//获取商品价格的td的文本值
-        var html = $("<tr>"    //开始拼接HTML元素，将取到的东西展示到对用的input中
-        +"<td>"+name+"</td>"
-        +"<td>"+price+"</td>"
-        +"<td>"
-        +"<input type='button' value='-'/>"
-        +"<input type='text' size='3' readonly='readonly'/>"
-        +"<input type='button' value='+'/>"
-        +"</td>"
-        +"<td>"+price+"</td>"
-        +"<td align='center'>"
-        +"<input type='button' value='*'/>"
-        +"</td></tr>");
-        $("#goods").append(html);
-    }
-    function deletShopping(btn){//给上一步你拼接的删除按钮上绑定一个这样的方法
-            $(btn).parent().parent().remove();
-            }
-            function increas(btn){
-                var text=$(btn).prev();
-                var acount = parseInt($(text).val());
-                $(text).val(++acount);
-                //获取单价
-                var tds = $(text).parent().siblings();
-                var price = parseInt($(tds).eq(1).text()); 
-                //获取总价
-                var sum = price*acount;
-                $(tds).eq(2).text(sum);
-}
-function decrease(btn){
-                    var text=$(btn).next();
-                var acount = parseInt($(text).val());
-                $(text).val(--acount);
-                if(acount<1){
-                    return;
-                    }
-                //获取单价
-                var tds = $(text).parent().siblings();
-                var price = parseInt($(tds).eq(1).text());
-                
-                //获取总价
-                var sum = price*acount
-                $(tds).eq(2).text(sum);
-}
-function total(){
-                    var trs = $("#goods tr");
-                    var sum=0;
-                    for(var i=0;i<trs.length;i++){
-                        var td = trs.eq(i).children().eq(3);
-                        var price = parseInt($(td).text());
-                        //alert(price);
-                        sum = sum + price;
-                        
-                        }
-                        $("#total").text(sum);
-                    }          
+        $(document).ready(function() {
+            $("table").on("click", ".minus", function() {
+                decrease($(this));
+            });
+            $("table").on("click", ".plus", function() {
+                increas($(this));
+            });
+            $("table").on("click", ".delete", function() {
+                deletShopping($(this));
+            })
+        })
 
+        function addShopping(btn) {
+            var tds = $(btn).parent().siblings(); //获取当前元素的父节点的全部兄弟节点，就是当前这行的所有td
+            var name = $(tds).eq(0).text(); //获取商品名称的td的文本值
+            var price = $(tds).eq(1).text(); //获取商品价格的td的文本值
+            var html = $("<tr>" //开始拼接HTML元素，将取到的东西展示到对用的input中
+                +
+                "<td>" + name + "</td>" +
+                "<td>" + price + "</td>" +
+                "<td>" +
+                "<input type='button' class='minus' value='-'/>" +
+                "<input type='text' size='3' value='0' />" +
+                "<input type='button'  class='plus' value='+'/>" +
+                "</td>" +
+                "<td>" + price + "</td>" +
+                "<td align='center'>" +
+                "<input type='button' class='delete' value='*'/>" +
+                "</td></tr>");
+            $("#goods").append(html);
+        }
+
+        function deletShopping(btn) { //给上一步你拼接的删除按钮上绑定一个这样的方法
+
+            $(btn).parent().parent().remove();
+        }
+
+        function increas(btn) {
+            var text = $(btn).prev();
+            var acount = parseInt($(text).val());
+            $(text).val(++acount);
+            //获取单价
+            var tds = $(text).parent().siblings();
+            var price = parseInt($(tds).eq(1).text());
+            //获取总价
+            var sum = price * acount;
+            $(tds).eq(2).text(sum);
+        }
+
+        function decrease(btn) {
+            var text = $(btn).next();
+            var acount = parseInt($(text).val());
+            
+            if (acount < 1) {
+                return ;
+            }
+            $(text).val(--acount);
+            //获取单价
+            var tds = $(text).parent().siblings();
+            var price = parseInt($(tds).eq(1).text());
+
+            //获取总价
+            var sum = price * acount
+            $(tds).eq(2).text(sum);
+        }
+
+        function total() {
+            var trs = $("#goods tr");
+            var sum = 0;
+            for (var i = 0; i < trs.length; i++) {
+                var td = trs.eq(i).children().eq(3);
+                var price = parseInt($(td).text());
+                //alert(price);
+                sum = sum + price;
+
+            }
+            $("#total").text(sum);
+        }
     </script>
 </body>
 
