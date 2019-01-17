@@ -1,0 +1,55 @@
+.goods-list ul li{
+    background-color:#fff;
+    border-bottom:1px solid #ccc;
+    height:260px;
+    padding:40px;
+}
+.goods-img{
+    float:left;
+    border:1px solid #ccc;
+    margin-right:20px;
+    width:180px;
+    height:180px;
+}
+.goods-bottom{
+    padding-top:52px;
+}
+.goods-bottom .price{
+    color:#f02028;
+}
+.goods-list .num{
+    float:right;
+}
+.goods-list .num span{
+    padding:0 30px;
+}
+.pay{
+    padding-left:30px;
+    background-color:#fff;
+    width:100%;
+    height:166px;
+    position:fixed;
+    bottom:0;
+}
+.pay .totalNum{
+    color:#F02028;
+}
+.pay p{
+    color:#f02028;
+}
+.pay button{
+    position: fixed;
+    bottom:0;
+    right:0;
+    width:300px;
+    height:166px;
+    background-color:#FF3334;
+    color:#fff;
+    font-size:45px;
+}
+h2{
+    margin-top:20px;
+    margin-left:50%;
+    font-size:26px;
+    color:#555;
+}

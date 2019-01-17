@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css"/>
+</head>
+
+<body>
+    <div class="addGoods">
+        <h2> 商品清单</h2>
+        <div class="goods-list">
+            <ul id="goods">
+                <li>
+                    <img src="./img/guo.jpg" class="goods-img" />
+                    <p>德国不粘锅</p>
+                    <div class="goods-bottom">￥<span class="goods-price">198.00</span>
+                        <div class="num"><span class="minus">-</span><span class="number">0</span><span class="plus">+</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="./img/timg.jpg" class="goods-img" />
+                    <p>旺旺卷心饼</p>
+                    <div class="goods-bottom">￥<span class="goods-price">188.00</span>
+                        <div class="num"><span class="minus">-</span><span class="number">0</span><span class="plus">+</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="./img/phone.jpg" class="goods-img" />
+                    <p>不撞壳的手机壳</p>
+                    <div class="goods-bottom">￥<span class="goods-price">68.00</span>
+                        <div class="num"><span class="minus">-</span><span class="number">0</span><span class="plus">+</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="./img/mls.jpg" class="goods-img" />
+                    <p>木林森鞋</p>
+                    <div class="goods-bottom">￥<span class="goods-price">198.00</span>
+                        <div class="num"><span class="minus">-</span><span class="number">0</span><span class="plus">+</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="./img/jiu.jpg" class="goods-img" />
+                    <p>法国葡萄酒</p>
+                    <div class="goods-bottom">￥<span class="goods-price">168.00</span>
+                        <div class="num"><span class="minus">-</span><span class="number">0</span><span class="plus">+</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="pay">共计<span id="totalNum">0</span>件
+                <p>总价￥<span id="totalPrice">0</span></p>
+                <button type="submit">去付款</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery-3.3.1.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#goods").on("click",".plus",function(){
+            var num=$(this).parent().children('.number');
+            num.text(parseInt(num.text())+1);
+            var totalNum=parseInt($("#totalNum").text());
+            totalNum++;
+            $('#totalNum').text(totalNum);
+            var goodsPrice=parseInt($(this).parent().parent().children(".goods-price").text());
+            $("#totalPrice").text(parseInt($("#totalPrice").text()) + goodsPrice);
+        });
+        $("#goods").on("click",".minus",function(){
+            var num=$(this).parent().children('.number');
+            if(parseInt(num.text())){
+                num.text(parseInt(num.text())-1);
+                var totalNum=parseInt($("#totalNum").text());
+                totalNum--;
+                $('#totalNum').text(totalNum);
+                var goodsPrice=parseInt($(this).parent().parent().children('.goods-price').text());
+                $("#totalPrice").text(parseInt($('#totalPrice').text())-goodsPrice);
+            }else{
+                num.text("0");
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

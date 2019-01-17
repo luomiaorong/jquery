@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./jquery-3.3.1.js"></script>
+    <div id="content">
+        <h1>html</h1>
+        <h1>php</h1>
+        <h1>javascript</h1>
+        <h1>jquery</h1>
+        <h1>java</h1>
+      </div>
+      
+      <script type="text/javascript">
+      function clearText() {
+        var content=document.getElementById("content");
+       var con=content.childNodes;
+        // 在此完成该函数+
+        for(i=0;i<con.length;i++){
+             console.log(con[i].innerHTML);
+            if(con[i].nodeType==1 && con[i].innerHTML=="javascript"){
+                content.removeChild(con[i])
+               
+            }
+            
+        }
+        
+      }
+      </script>
+      
+      <button onclick="clearText()">清除节点内容</button>
+      
+    
+</body>
+</html>
