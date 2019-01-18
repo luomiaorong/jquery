@@ -3,6 +3,7 @@
     border-bottom:1px solid #ccc;
     height:260px;
     padding:40px;
+    list-style-type:none;
 }
 .goods-img{
     float:left;
@@ -37,7 +38,7 @@
 .pay p{
     color:#f02028;
 }
-.pay button{
+.pay .pay-btn{
     position: fixed;
     bottom:0;
     right:0;
